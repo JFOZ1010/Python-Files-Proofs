@@ -21,6 +21,9 @@ class Search_Selenium(unittest.TestCase):
         search_field.clear()
         search_field.send_keys("tee")
         search_field.submit()
+
+        shirts = driver.find_elements(by="xpath", value='//*[@id="top"]/body/div/div[2]/div[2]/div/div[2]/div[1]/div[4]/ul/li[2]/div/h2/a')
+        self.assertEqual(1, len(shirts))
     
     def test_search_salt_shaker(self):
         driver = self.driver
