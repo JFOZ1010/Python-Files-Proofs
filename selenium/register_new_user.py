@@ -21,6 +21,7 @@ class RegisterNewUser(unittest.TestCase):
         self.assertTrue(submit_button.is_displayed() and submit_button.is_enabled()) #se verifica que el boton este habilitado y visible.   
         submit_button.click() #hacemos click en el boton de crear cuenta
 
+        #utilizar typos para encontrar title
         self.assertEqual('Create New Customer Account', driver.title) #verificamos que el titulo sea el correcto
 
         #vamos a escribir en cada uno de los campos de texto: 
