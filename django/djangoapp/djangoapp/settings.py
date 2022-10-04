@@ -30,13 +30,14 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+INSTALLED_APPS = [ #son las apps que se van a instalar, o que están instaladas dentro de la carpeta djangoapp (proyecto)
+    'polls.apps.PollsConfig', #app polls
+    'django.contrib.admin', #admin, sirve para  administrar el proyecto
+    'django.contrib.auth', #auth, sirve para autenticar usuarios
+    'django.contrib.contenttypes', #contenttypes, sirve para los tipos de contenido
+    'django.contrib.sessions', #sessions, sirve para las sesiones
+    'django.contrib.messages', #messages, sirve para los mensajes entre usuarios
+    'django.contrib.staticfiles', #staticfiles, sirve para los archivos estáticos, que son los que no cambian, HTML, CSS, JS, etc...
 ]
 
 MIDDLEWARE = [
@@ -51,7 +52,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'djangoapp.urls'
 
-TEMPLATES = [
+TEMPLATES = [ #configuración de los templates, que son basicamente html con código de python
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
@@ -73,10 +74,11 @@ WSGI_APPLICATION = 'djangoapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES = { #configuración de la base de datos, en este caso es sqlite3, pero puede ser mysql, postgresql, etc...
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        #aqui se pueden añadir user, password, host, etc...
     }
 }
 
@@ -103,13 +105,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us' #idioma: inglés
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC' #zona horaria
 
-USE_I18N = True
+USE_I18N = True #internacionalización
 
-USE_TZ = True
+USE_TZ = True #zona horaria de tiempo, si es true, usa la zona horaria de TIME_ZONE
 
 
 # Static files (CSS, JavaScript, Images)
