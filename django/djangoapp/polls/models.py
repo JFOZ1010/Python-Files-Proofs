@@ -1,5 +1,8 @@
 from django.db import models
 import datetime
+
+from django.utils import timezone
+
 # Create your models here.
 
 #definimos la primer clase (table), llamada questions {atributos: id, question_text, pub_date}
@@ -10,10 +13,10 @@ class Question(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True) #definimos el campo pub_date como un campo de tipo DateTimeField, con una etiqueta 'date published'
 
     def __str__(self): #definimos el método __str__ para que nos devuelva el valor de la pregunta
-        return self.question_text
+        return self.pub_date, self.question_text
 
     def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1) #devuelve True si la fecha de publicación es mayor o igual a la fecha actual menos 1 día
+        return timezone.now() >= self.pub_date >= timezone.now() - datetime.timedelta(days=1) #devuelve True si la fecha de publicación es mayor o igual a la fecha actual menos 1 día
 
 
 class Choice(models.Model):

@@ -1,8 +1,11 @@
 # archivo que está dentro de polls 
 # urls.py
-from django.urls import path
+# from django.urls import path
 #importar la vista de views.py que está dentro de polls
 from . import views
+from django.urls import path
+
+
 
 app_name = "polls"
 urlpatterns = [ #lista de urls

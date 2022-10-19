@@ -27,6 +27,8 @@ DEBUG = True #si es en local debe ser true, pero en deployment debe ser false
 
 ALLOWED_HOSTS = []
 
+#jsjsjs
+
 
 # Application definition
 
@@ -68,7 +70,7 @@ TEMPLATES = [ #configuración de los templates, que son basicamente html con có
     },
 ]
 
-WSGI_APPLICATION = 'djangoapp.wsgi.application'
+WSGI_APPLICATION = 'djangoapp.wsgi.application' #es el archivo que se encarga de ejecutar el proyecto, es el que se ejecuta con el comando python manage.py runserver
 
 
 # Database

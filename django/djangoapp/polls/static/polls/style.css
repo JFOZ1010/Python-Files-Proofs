@@ -1,0 +1,28 @@
+li a {
+    color: black;
+    font-style: calc(1.5em + 1vw);
+    font-family: 'Roboto', sans-serif;
+    padding: 8px 16px;
+    display: block;
+}
+
+h2 {
+    font-family:'Trebuchet MS', Arial, sans-serif; 
+    background: #3ACF9D;
+    background: radial-gradient(circle farthest-corner at center center, #3ACF9D 8%, #2334CF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+        
+}
+
+div {
+    padding: auto;
+    margin: auto;
+    width: 50%;
+    margin-top: 5%;
+    background-color: rgb(246, 237, 227);
+    border-radius: calc(0.5em + 1vw);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);    
+
+}
