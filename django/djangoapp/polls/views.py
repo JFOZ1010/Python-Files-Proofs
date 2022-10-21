@@ -1,7 +1,9 @@
+from .models import Question
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Question
 from django.urls import reverse
+from django.db.models import Count
 from django.views import generic
 from django.utils import timezone
 
@@ -49,17 +51,28 @@ class IndexView(generic.ListView):
     template_name = "polls/index.html" #el template que va a usar
     context_object_name = "latest_question_list" #esta es la vista para ver el detalle de la pregunta
 
-    def get_queryset(self): #este metodo es para obtener el queryset, que es la lista de objetos que se va a mostrar
-        """Return the last five published questions."""
-        return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[:5] #devuelve las últimas 5 preguntas
+    def get_queryset(self):
+        """Return the last five published questions, that have at least two questions"""
+        question = Question.objects.filter(pub_date__lte=timezone.now())
+        question = question.alias(entries=Count("choice")).filter(entries__gte=2)
+        return question.order_by("-pub_date")[:5]
 
 class DetailView(generic.DetailView):
     model = Question #el modelo que va a usarse
     template_name = "polls/detail.html"
 
+    def get_queryset(self):
+        """
+        excludes any questions that arent published yet. 
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now())
+
 class ResultsView(generic.DetailView):
     model = Question
-    template_name = "polls/result.html"
+    template_name: str = "polls/result.html"
+
+    def get_queryset(self):
+        return Question.objects.filter(pub_date__lte=timezone.now())
 
 def vote(request, question_id): #esta es para votar
     question = get_object_or_404(Question, pk=question_id)
@@ -75,6 +88,8 @@ def vote(request, question_id): #esta es para votar
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
+
+
 
 # Create your views here.
 
